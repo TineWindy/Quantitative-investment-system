@@ -11,7 +11,11 @@
     <title>Home</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="/Users/Visionary/Desktop/CitiCup/Product/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+
+    <script type="text/javascript" src="./js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="./js/bootstrap.js"></script>
+    <script type="text/javascript" src="./js/info.js"></script>
 
     <style type="text/css">
       /*body{
@@ -60,18 +64,27 @@
                 <div class="dropdown-divider"></div>
               </div>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Forum</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Forum </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="./Forum/forumHome.html">Forum </a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="./Forum/write.html">Write Article </a>
+              </div>
             </li>
-            <li ckass="nav-item active">
+            <li class="nav-item">
               <a class="nav-link" href="#">Investing</a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
-            <a class="btn btn-outline-success my-2 my-sm-0" role="button" href="./signIn.html">SignIn</a>
-            <a class="btn btn-outline-success my-2 my-sm-0" role="button" href="./signUp.html">SignUp</a>
-          </form>
+
+          <div id="aPersonInfo">
+            <form class="form-inline my-2 my-lg-0">
+              <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+              <a class="btn btn-outline-success my-2 my-sm-0" role="button" href="./User/signIn.html">SignIn</a>
+              <a class="btn btn-outline-success my-2 my-sm-0" role="button" href="./USer/signUp.html">SignUp</a>
+            </form>
+          </div>
+
         </div>
       </div>
     </nav>
@@ -213,12 +226,12 @@
       </footer>
     </main>
 
+    
+
+  
 
 
 
 
-    <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
   </body>
 </html>
