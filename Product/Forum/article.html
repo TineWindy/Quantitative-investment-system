@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en"> 
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link href="./clean-blog.css" rel="stylesheet"  >
+  
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+<!--     <script type="text/javascript" src="./wangEditor.js"></script>
+ -->    <script type="text/javascript" src="./getArticle.js"></script>
+    <title>Article</title>
+
+    <style type="text/css">
+      
+      .meta button{
+        height: 20px;
+        line-height: 10%;
+      }
+      .comment{
+        margin:auto;
+        width:60%;
+      }
+      .card-header{
+        background-color: rgba(0, 0, 0, 0.03);
+        margin:1px;
+      }
+      .card-text{
+        margin-top: 0px;
+      }
+      .commentLike{
+        height:20px;
+        line-height: 10%;
+      }
+      .navbar-brand{
+        margin-left: -3%;
+        height: auto;
+        width: auto;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    
+
+    
+
+
+        <!-- Page Header -->
+    <header class="masthead" >
+      <!--style="background-image: url('img/post-bg.jpg')"-->
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="post-heading">
+              <h1 id="art-title">Man must explore, and this is exploration at its greatest</h1>
+              <h2 class="subheading" id="art-subtitle"><a href="#" id="art-author" style="color:#FFFFFF;">Writed by Author,20 Aug.</a></h2>
+              <span class="meta" id="art-tags">
+                  <button type="button" class="btn btn-success">tag1</button>
+                  <button type="button" class="btn btn-info">tag2</button>
+                  <button type="button" class="btn btn-warning">tag3</button>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Post Content -->
+    <article >
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto" id="art-body">
+            
+
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <hr>
+
+    <div class="container" style="text-align: center;">
+      <button class="btn-outline-success clo-md-2"  id="art-like" onclick="like(12)">Agree:0</button>
+      <button class="btn-outline-warning clo-md-2" id="art-dislike" onclick="dislike(12)">Disagree</button>
+    </div>
+    <br><br>
+
+    <div class="container" id="art-comment">
+
+        <div class="card comment" >
+
+          <div class="card-header row">
+            <a class="navbar-brand col-md-1" href="#">
+              <img src="../imgs/logo.png" width="36" height="36" class="mr-sm-2">
+            </a>
+            <div class="col-md-6 row">
+              <span>UserName</span>
+              <span class="w-100"></span>
+              <span>Description</span>
+            </div>
+          </div>
+
+          <div class="card-body">
+            <p class="card-text">Comment</p>
+            <button class="btn btn-outline-secondary commentLike">Agree</button>
+            <span style="font-size: 15px;float: right;">2018:09:04</span>
+          </div>
+        </div>
+    </div>
+    <br>
+    <div class="container text-center">
+      <div class="row" style="margin-left: 20%;">
+        <input class="col-md-7" type="text" name="comment" id="art-commentWrite" placeholder="Write your comment!">
+        <button class="btn col-md-1" style="width: 1%" onclick="submitComment()">Comment</button>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 col-md-10 mx-auto">
+            <ul class="list-inline text-center">
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-twitter fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-facebook fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <a href="#">
+                  <span class="fa-stack fa-lg">
+                    <i class="fa fa-circle fa-stack-2x"></i>
+                    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+                  </span>
+                </a>
+              </li>
+            </ul>
+            <p class="copyright text-muted">Copyright &copy; Your Website 2018</p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+
+
+    <script type="text/javascript">
+      // var localStorage = window.localStorage;
+      // //var jsonStr = localStorage.getItem("art");
+      // var jsonStr = loadArticle();
+      // var json = JSON.parse(jsonStr);
+      // //console.log(json.length);
+      // var h = transToHtml(json);
+      // document.getElementById("artBody").innerHTML=h;
+      loadArticle(1);
+      loadComment(1);
+
+      function submitComment(){
+        comment(10,"test");
+        loadComment(10);
+      }
+    </script>
+
+  </body>
+</html>
+
+
+
+

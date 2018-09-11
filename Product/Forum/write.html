@@ -1,0 +1,289 @@
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../../../favicon.ico"> -->
+
+    <title>Write</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../css/wangEditor.min.css">
+    <style type="text/css" src="../css/bootstrap.min.css"></style>
+    <script type="text/javascript" src="../js/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="../js/popper.min.js"></script>
+    <script type="text/javascript" src="../js/bootstrap.js"></script>
+    <script type="text/javascript" src="./img1.js"></script>
+    <script type="text/javascript" src="./img2.js"></script>
+    <script type="text/javascript" src="./wangEditor.js"></script>
+    <script type="text/javascript" src="./qiniu.js"></script>
+    <script type="text/javascript" src="./getArticle.js"></script>
+    <script type="text/javascript" src="./getTags.js"></script>
+
+    <style type="text/css">
+    	body{
+    		margin-top: 80px;
+    	}
+    	.wrap{
+    		text-align: center;
+    		width: 50%;
+    	}
+    	.textarea{
+    		text-align: left;
+    	}
+    	.navbar{
+    		height: 40px;
+    	}
+    	#navv{
+    		padding-left: 15%;
+    		padding-right: 10%;
+    	}
+        #tags{
+            margin-top: 10px;
+            margin-left: 26%;
+        }
+    </style>
+</head>
+
+<body>
+
+	<nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light row">
+      <div class="container d-flex flex-column flex-md-row justify-content-between" id="navv">
+        <a class="navbar-brand" href="#">
+          CloudThinker
+        </a>
+          <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button> -->
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            
+          </ul>
+          
+            <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"> -->
+            <button class="btn btn-outline-success  " role="button" type="submit" value="Preview" onclick="getTagCheckbox()">
+            	Preview
+            </button>
+            <button class="btn btn-success  " role="button" type="submit" value="Submit" onclick="publish()">Submit</button>
+          
+        </div>
+      </div>
+    </nav>
+
+    <form class="form-signin" style="text-align: center;">
+        <div class="form-label-group container">
+            <input type="text" id="title" class="form-control" placeholder="Title" required="" autofocus="" style="margin-left:220px;margin-right: 20px;width: 20%;">
+        </div>
+    </form>
+
+    <!-- <div class="dropdown" style="margin-left: 27%;margin-top: 10px;z-index: 100;">
+      <button class="btn btn-outline-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <span>Add Tag</span>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" href="#">Action</a>
+        <a class="dropdown-item" href="#">Another action</a>
+        <a class="dropdown-item" href="#">Something else here</a>
+      </div>
+    </div> -->
+
+    <p style="margin-left: 27%;margin-top: 10px;z-index: 100;">
+        <a class="btn btn-outline-success" data-toggle="collapse" href="#write-tag" role="button" aria-expanded="false" aria-controls="multiCollapseExample1" >Add Tags</a>
+    </p>
+
+    <div class="collapse multi-collapse" id="write-tag" style="margin-left: 26%;margin-top: 10px;z-index: 100;width: 50%;">
+        <div class="input-group mb-3 container" >
+          <div class="input-group-prepend" >
+            <div class="input-group-text">
+              GPR<input type="checkbox" aria-label="Checkbox for following text input" value="gpr" name="gpr"> 
+            </div>
+            <div class="input-group-text">
+              GPR<input type="checkbox" aria-label="Checkbox for following text input" value="gpr" name="gpr"> 
+            </div>
+            <div class="input-group-text">
+              GPR<input type="checkbox" aria-label="Checkbox for following text input" value="gpr" name="gpr"> 
+            </div>
+            <div class="input-group-text">
+              GPR<input type="checkbox" aria-label="Checkbox for following text input" value="gpr" name="gpr"> 
+            </div>
+            <div class="input-group-text">
+              NPR<input type="checkbox" aria-label="Checkbox for following text input" value="gpr" name="gpr"> 
+            </div>
+          </div>
+        </div>
+        <div class="input-group mb-3 container" >
+          <div class="input-group-prepend" >
+            <div class="input-group-text">
+              GPR<input type="checkbox" aria-label="Checkbox for following text input" value="gpr" name="gpr"> 
+            </div>
+            <div class="input-group-text">
+              NPR<input type="checkbox" aria-label="Checkbox for following text input" value="gpr" name="gpr"> 
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+    
+
+    <br><br>
+
+	<div class="container wrap">
+		<div class="container toolbar" id="menu"></div>
+		<hr class="featurette-divider" style="margin-left: 3%;padding-right: 2%">
+		<div class="container textarea" id="editor" style="height: 60%">
+			<p>请尽情创造优质内容!</p>
+		</div>
+	</div>
+
+    
+	<script type="text/javascript">
+        loadTagCheckbox();
+
+		var E = window.wangEditor;
+		var editor = new E("#menu","#editor");
+		// editor.customConfig.uploadImgServer = 'http://192.168.43.200:7777/api/posts/images/';
+        editor.customConfig.qiniu = true;
+
+		editor.create();
+
+		if(window.localStorage){
+			//alert("access to storage!");
+		}
+		else{
+			alert("no!");
+		}
+
+		function getArticle(){
+			var json = editor.txt.getJSON();  // 获取 JSON 格式的内容
+       	 	var jsonStr = JSON.stringify(json);
+
+       	 	//htmlString = transToHtml(json);
+        	//console.log(json);
+        	//console.log(htmlString);
+
+
+            var localStorage =window.localStorage;
+            // 存储
+            localStorage.setItem("art",jsonStr)
+
+            return jsonStr;
+
+            //window.open("./article.html")
+		}
+
+        function publish(){
+            var title = $("#title").val();
+            var content = getArticle();
+            var tags = getTagCheckbox();
+            console.log(tags[0]);
+            publishArticle(title,content,tags);
+
+        }
+
+        uploadInit()
+
+// 初始化七牛上传的方法
+        function uploadInit() {
+            // 获取相关 DOM 节点的 ID
+            var btnId = editor.imgMenuId;
+            var containerId = editor.toolbarElemId;
+            var textElemId = editor.textElemId;
+
+            // 创建上传对象
+            var uploader = Qiniu.uploader({
+                runtimes: 'html5,flash,html4',    //上传模式,依次退化
+                browse_button: btnId,       //上传选择的点选按钮，**必需**
+                uptoken_url: 'http://127.0.0.1:7777/api/posts/getToken/',
+                    //Ajax请求upToken的Url，**强烈建议设置**（服务端提供）
+                // uptoken : '<Your upload token>',
+                    //若未指定uptoken_url,则必须指定 uptoken ,uptoken由其他程序生成
+                // unique_names: true,
+                    // 默认 false，key为文件名。若开启该选项，SDK会为每个文件自动生成key（文件名）
+                save_key: true,
+                    // 默认 false。若在服务端生成uptoken的上传策略中指定了 `sava_key`，则开启，SDK在前端将不对key进行任何处理
+                domain: 'http://p9260z3xy.bkt.clouddn.com/',
+                    //bucket 域名，下载资源时用到，**必需**
+                container: containerId,           //上传区域DOM ID，默认是browser_button的父元素，
+                max_file_size: '100mb',           //最大文件体积限制
+                flash_swf_url: '',  //引入flash,相对路径
+                filters: {
+                        mime_types: [
+                          //只允许上传图片文件 （注意，extensions中，逗号后面不要加空格）
+                          { title: "图片文件", extensions: "jpg,gif,png,bmp" }
+                        ]
+                },
+                max_retries: 1,                   //上传失败最大重试次数
+                dragdrop: true,                   //开启可拖曳上传
+                drop_element: textElemId,        //拖曳上传区域元素的ID，拖曳文件或文件夹后可触发上传
+                chunk_size: '4mb',                //分块上传时，每片的体积
+                auto_start: true,                 //选择文件后自动上传，若关闭需要自己绑定事件触发上传
+                init: {
+                    'FilesAdded': function(up, files) {
+                        plupload.each(files, function(file) {
+                            // 文件添加进队列后,处理相关的事情
+                            printLog('on FilesAdded');
+                        });
+                    },
+                    'BeforeUpload': function(up, file) {
+                        // 每个文件上传前,处理相关的事情
+                        printLog('on BeforeUpload');
+                    },
+                    'UploadProgress': function(up, file) {
+                        // 显示进度
+                        printLog('进度 ' + file.percent)
+                    },
+                    'FileUploaded': function(up, file, info) {
+                        // 每个文件上传成功后,处理相关的事情
+                        // 其中 info 是文件上传成功后，服务端返回的json，形式如
+                        // {
+                        //    "hash": "Fh8xVqod2MQ1mocfI4S4KpRL6D98",
+                        //    "key": "gogopher.jpg"
+                        //  }
+                        printLog(info);
+                        // 参考http://developer.qiniu.com/docs/v6/api/overview/up/response/simple-response.html
+                        
+                        var domain = up.getOption('domain');
+                        var res = $.parseJSON(info);
+                        var sourceLink = domain + res.key; //获取上传成功后的文件的Url
+
+                        printLog(sourceLink);
+                        // 插入图片到editor
+                        editor.cmd.do('insertHtml', '<img src="' + sourceLink + '" style="max-width:100%;"/>')
+                    },
+                    'Error': function(up, err, errTip) {
+                        //上传出错时,处理相关的事情
+                        printLog('on Error');
+                    },
+                    'UploadComplete': function() {
+                        //队列文件处理完毕后,处理相关的事情
+                        printLog('on UploadComplete');
+                    }
+                    // Key 函数如果有需要自行配置，无特殊需要请注释
+                    //,
+                    // 'Key': function(up, file) {
+                    //     // 若想在前端对每个文件的key进行个性化处理，可以配置该函数
+                    //     // 该配置必须要在 unique_names: false , save_key: false 时才生效
+                    //     var key = "";
+                    //     // do something with key here
+                    //     return key
+                    // }
+                }
+                // domain 为七牛空间（bucket)对应的域名，选择某个空间后，可通过"空间设置->基本设置->域名设置"查看获取
+                // uploader 为一个plupload对象，继承了所有plupload的方法，参考http://plupload.com/docs
+            });
+        }
+
+        // 封装 console.log 函数
+        function printLog(title, info) {
+            window.console && console.log(title, info);
+        }
+
+
+	</script>
+</body>
